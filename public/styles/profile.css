@@ -1,0 +1,130 @@
+body{
+	padding: 0px;
+	margin: 0px;
+}
+
+header{
+background-color : grey;
+padding : 0px;
+text-align : center;
+margin : 0px;
+}
+
+.about-me{
+display : inline-block;
+padding-left : 10px;
+width : 45%;
+}
+.picture-container{
+display : inline-block;
+width : 45%;
+}
+
+.profile-pic{
+ width : 250px;
+ height : 250px;
+}
+
+aside{
+	font-style: italic;
+	text-align : left;
+	border: dashed black;
+	color: black;
+	float: right;
+	margin-right: 420px;
+	margin-left: 3px;
+	padding: 1px;
+}
+.place-went{
+	padding-left : 50px;
+}
+.travel-para{
+	font-size : 18px;
+	padding-left : 30px;
+	
+
+}
+.image-view{
+	height : 700px;
+	width : 500px;
+}
+.place-img{
+	padding-right:15px;
+}
+.footer-section{
+text-align: center;
+	background-color: grey;
+	color: wheat;
+	margin: 0px;
+	margin-top : 150px;	
+	padding: 0px;
+	margin-bottom:20px;
+}
+
+.email{
+	font-style: italic;
+}
+
+.daily-routine-header{
+	margin-top: 40px;
+}
+
+
+table,th,tr,td{
+border :solid;
+}
+
+.daily-routine{
+	width:80%;
+	border:solid;
+	text-align:center;
+	margin-left:10rem;
+}
+
+.Study{
+background-color :cyan;
+
+}
+.name-logo{
+	font-size : 20px;
+	font-style : bold;
+	padding-left: 10px;
+	
+}
+.sports{
+background-color : brown;
+}
+a{
+   color: inherit;
+}
+.game-field{
+	border-style : solid;
+	border-color: coral;
+  	border-width: 3px;
+  	background-color : red;
+  	color : white;
+  	text-align :center;
+  	width : 300px;
+	cursor : pointer;
+	height : 40px;
+}
+.lunch{
+
+background-color: lightgreen;
+}
+.navbar{
+	width : 100%;
+	display : inline;
+	padding : 20px;
+}
+.audios{
+	width:100%;
+	margin-top :50px;
+	text-align : center;
+}
+input,label{
+	margin :10px;
+}
+audio{
+	margin :10px;
+}

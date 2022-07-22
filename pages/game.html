@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>
+          Game
+        </title>
+        <link rel="stylesheet" href="styles/game.css">
+        <link rel="stylesheet" href="styles/profile.css">
+        <script  type="text/javascript" src = "JavaScript/game.js"></script>
+    </head>
+    <body>
+    <nav class="navbar">
+  	<span class="name-logo" style="margin-right : 90rem;" href="#">R</span>
+    <a class="" href="/miamipictures">Miami</a>
+    <a class="" href="/nashpictures">Nashville</a>
+    <a class="" href="/newOrpics">New orleans</a>
+    <a class="" href="/game">Game</a>
+</nav>
+    <div class="game" id="gameplay">
+		<h1 style="color: cream;">Please,click on 4 arbitrary spots within this box, and see my shape transformation magic.</h1>
+		<div id="game_error"></div>
+		<canvas id="canvas" onclick="return showCoords(canvas, event);" width="500px" height="380px" style="border:1px solid #000000;">
+
+		</canvas>
+		<button class="start-button" id="startbtn" onclick="return Start();"> START</button>
+		<button class="start-button" onclick="return Stop();"> STOP</button>
+	</div>
+    </body>
+    
+   </html>
