@@ -1,10 +1,16 @@
 {
   "tejo": {
     "name": "tejo",
-    "phone": "1",
-    "address": "",
+    "phone": "123456",
+    "address": "sdd",
     "email": "tejoravivarma07@gmail.com",
     "comment": "initial"
+  },
+  "ravi": {
+    "name": "ravi",
+    "phone": "1234",
+    "address": "smd",
+    "email": "tejoravivarma07@gmail.com",
+    "comment": "checking"
   }
-  
 }

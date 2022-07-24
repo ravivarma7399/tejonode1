@@ -24,7 +24,7 @@ function formSubmit() {
    //    }
    
 
- else  if(!$address == "" ) {
+ else  if($address == "" ) {
       alert( "Please Enter your Address." );
       // form1.address.focus() ;
       return false;
