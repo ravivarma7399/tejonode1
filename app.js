@@ -1,15 +1,11 @@
-'use strict';
+
 const express= require('express');
 const app=express()
 const nodemailer = require('nodemailer');
 var bodyParser =require('body-parser');
-const { stringify } = require('querystring');
-const fs=require('fs');
-
-const rawdata = fs.readFileSync('dataform.json');
-const data=JSON.parse(rawdata);
 const port=process.env.PORT || 8000;
-
+const mongoose = require('mongoose');
+const {Schema}=mongoose;
 
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json());
@@ -20,43 +16,11 @@ app.use('/img', express.static(__dirname + '/public/img'));
 app.use('/JavaScript', express.static(__dirname + '/public/JavaScript'));
 
 
-const saveData= function(data,file){
-    const finished=(error)=>{
-        if (error){
-            console.error(error);
-            return;
-        }
-    }
-
-    const jsonData=JSON.stringify(data,null,2);
-    fs.writeFile(file,jsonData,finished);
-   
-}
-
 
 const lib = require("./server");
 
 
-const saveUser = function(body){
- 
-    const newUser ={
-        name:body.name,
-        phone:body.phone,
-        address:body.address,
-        email:body.email,
-        comment:body.comments
-    }
-data[body.name]=newUser;
-saveData(data,'dataform.json');
-}
 
-
-app.post('/sendform',function(req,res) {
-    saveUser(req.body);
-    lib.smail(req.body.email,req.body.name);
-    res.redirect('/'); 
- 
-})
 
 
 
@@ -82,6 +46,97 @@ app.get('/game',function(req,res){
     res.sendFile(__dirname + '/pages/game.html');
 })
 
+
+
+app.get('/Thankyou',function(req,res){
+    res.sendFile(__dirname + '/pages/Thankyou.html');
+})
+
+app.get('/ThankyouUser',function(req,res){
+    res.sendFile(__dirname + '/pages/ThankyouUser.html');
+})
+
+
+
+mongoose.pluralize(null);
+mongoose.connect('mongodb://127.0.0.1:27017/Feedback',{useNewUrlParser: true},(err)=>{
+    if(!err){
+        console.log("Connected");
+    }
+    else  {   
+         console.log("Not Connected");}
+    
+});
+
+const postfSchema =new Schema({
+    name:{type: String,required:true},
+    phone:{type: String,required:true},
+    address:{type: String,required:true},
+    email:{type: String,required:true},
+    comments:{type: String,required:true}
+});
+
+ const feedModel=mongoose.model('Feedbackform',postfSchema);
+
+
+app.post('/addform',function(req,res){
+   console.log(req.body);
+    const feedData =new feedModel(req.body)
+      feedModel.findOne({email:req.body.email},(error,resp)=>{
+        if(error){
+            console.log("Error:" +error);
+        }
+        else{ 
+            if(resp!=null){
+            console.log("DATA: "+resp);
+           feedModel.findOneAndUpdate({email: req.body.email }, 
+                {comments:req.body.comments,name:req.body.name,phone:req.body.phone,address:req.body.address}, null, function (err, docs) {
+                if (err){
+                    console.log(err)
+                }
+                else{
+                    console.log("Original Doc : ",docs);
+                }
+            });
+
+                  lib.smail(req.body.email,req.body.name);
+                              console.log("user updated");
+                  
+                              feedModel.countDocuments({}, function(err,count) {
+                                  if (err) { return handleError(err) } //handle possible errors
+                                  console.log("Count: "+count);
+                                  res.redirect('/ThankyouUser');
+
+           })
+          }
+          else{
+            feedData.save(function(err){
+                if(!err){
+                    lib.smail(req.body.email,req.body.name);
+                    console.log("user added");
+        
+                    feedModel.countDocuments({}, function(err,count) {
+                        if (err) { return handleError(err) } //handle possible errors
+                        console.log("Count: "+count);
+                        res.redirect('/Thankyou/?count='+count);
+                       
+                    })
+                      
+                    
+                }
+                else
+                { res.send("user not added");
+                console.log("user not added");
+        
+                }
+            })
+          }
+        }
+      })
+
+
+  
+})
 
 
 

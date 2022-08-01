@@ -41,7 +41,6 @@ function formSubmit() {
 else{
  
    alert("Thank you!!!");
-   res.redirect('');
    return true;
 }
 }
