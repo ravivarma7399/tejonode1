@@ -59,7 +59,7 @@ app.get('/ThankyouUser',function(req,res){
 
 
 mongoose.pluralize(null);
-mongoose.connect('mongodb://127.0.0.1:27017/Feedback',{useNewUrlParser: true},(err)=>{
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/tejoapp',{useNewUrlParser: true},(err)=>{
     if(!err){
         console.log("Connected");
     }
