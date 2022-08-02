@@ -56,10 +56,10 @@ app.get('/ThankyouUser',function(req,res){
     res.sendFile(__dirname + '/pages/ThankyouUser.html');
 })
 
-
+const DB='mongodb+srv://ravivarma07:abcd1234@cluster0.0jgkvpn.mongodb.net/Feedbackcheck?retryWrites=true&w=majority';
 
 mongoose.pluralize(null);
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/tejoapp',{useNewUrlParser: true},(err)=>{
+mongoose.connect(DB,{useNewUrlParser: true},(err)=>{
     if(!err){
         console.log("Connected");
     }

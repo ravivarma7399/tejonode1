@@ -5,7 +5,7 @@ let mailOptions = {
     from: "tejoravivarma07@gmail.com",
     to: email2,
     subject: "Thanks for your Feedback",
-    text: "Dear "+name+", Thank you for your feedback! \n\nTejo Ravi Varma Thotakura  \n https://tejoappc.herokuapp.com/"
+    text: "Dear "+name+", Thank you for your feedback! \n\nTejo Ravi Varma Thotakura  \n https://raviappc.herokuapp.com/"
 };
 
 
